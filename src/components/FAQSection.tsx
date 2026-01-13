@@ -25,7 +25,7 @@ const faqs = [
   },
   {
     question: "Do you offer a first-time customer discount?",
-    answer: "Yes! 🎉 We offer a special discount for first-time customers on their initial cleaning service.",
+    answer: "Yes! We offer a special discount for first-time customers on their initial cleaning service.",
   },
   {
     question: "Do you offer recurring cleaning contracts?",
@@ -41,7 +41,7 @@ const faqs = [
   },
   {
     question: "What if I'm not satisfied with the service?",
-    answer: "Your satisfaction is extremely important to us! 🌿 Contact us directly with any concerns and we'll address them promptly.",
+    answer: "Your satisfaction is extremely important to us! Contact us directly with any concerns and we'll address them promptly.",
   },
   {
     question: "How do I book a cleaning?",

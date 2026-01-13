@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { MessageCircle, Calendar, Sparkles, Star } from "lucide-react";
+import { MessageCircle, Calendar, Sparkles, Star, ArrowRight } from "lucide-react";
 
 const steps = [
   {
@@ -85,8 +85,8 @@ const HowItWorks = () => {
 
                 {/* Arrow for desktop */}
                 {index < steps.length - 1 && (
-                  <div className="hidden lg:block absolute top-1/2 -right-4 text-primary text-2xl -translate-y-1/2 z-20">
-                    →
+                  <div className="hidden lg:block absolute top-1/2 -right-4 text-primary -translate-y-1/2 z-20">
+                    <ArrowRight size={24} />
                   </div>
                 )}
               </motion.div>

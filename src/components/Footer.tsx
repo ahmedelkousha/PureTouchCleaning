@@ -44,7 +44,7 @@ const Footer = () => {
               We bring trust and cleanliness to every home and office we serve.
             </p>
             <div className="flex items-center gap-2 text-sm text-primary-foreground/60">
-              <span>🇺🇸</span>
+              <MapPin size={16} className="text-accent" />
               <span>Serving Chicago & Suburbs</span>
             </div>
           </div>

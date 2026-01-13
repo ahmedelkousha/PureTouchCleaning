@@ -1,8 +1,8 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageCircle, X, Sparkles } from "lucide-react";
-import { useState, useEffect } from "react";
+import { MessageCircle, X, Sparkles, Phone } from "lucide-react";
+import { useState, useEffect, forwardRef } from "react";
 
-const FloatingCTA = () => {
+const FloatingCTA = forwardRef<HTMLDivElement>((_, ref) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -24,6 +24,7 @@ const FloatingCTA = () => {
     <AnimatePresence>
       {isVisible && (
         <motion.div
+          ref={ref}
           initial={{ opacity: 0, scale: 0.8, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.8, y: 20 }}
@@ -65,9 +66,10 @@ const FloatingCTA = () => {
                   </button>
                   <a
                     href="tel:+1234567890"
-                    className="block w-full bg-secondary hover:bg-secondary/80 text-secondary-foreground font-medium py-3 px-4 rounded-xl text-center transition-colors"
+                    className="flex items-center justify-center gap-2 w-full bg-secondary hover:bg-secondary/80 text-secondary-foreground font-medium py-3 px-4 rounded-xl text-center transition-colors"
                   >
-                    📞 Call Us
+                    <Phone size={18} />
+                    Call Us
                   </a>
                 </div>
               </motion.div>
@@ -85,8 +87,9 @@ const FloatingCTA = () => {
                 <span className="absolute inset-0 rounded-full bg-primary animate-ping opacity-20" />
                 
                 {/* Tooltip */}
-                <span className="absolute right-full mr-3 bg-card text-foreground px-3 py-2 rounded-lg shadow-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity border border-border">
-                  Get a Quote! ✨
+                <span className="absolute right-full mr-3 bg-card text-foreground px-3 py-2 rounded-lg shadow-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity border border-border flex items-center gap-2">
+                  <Sparkles size={14} className="text-accent" />
+                  Get a Quote!
                 </span>
               </motion.button>
             )}
@@ -95,6 +98,8 @@ const FloatingCTA = () => {
       )}
     </AnimatePresence>
   );
-};
+});
+
+FloatingCTA.displayName = "FloatingCTA";
 
 export default FloatingCTA;

@@ -1,12 +1,68 @@
 import { motion } from "framer-motion";
-import { Calendar, Clock, Sparkles, CheckCircle } from "lucide-react";
+import { Calendar, Clock, Sparkles, CheckCircle, MessageCircle, Send, Phone, Mail, User, Home, Bed, Bath, MapPin, FileText } from "lucide-react";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const BookingSection = () => {
-  // Replace this with your actual Google Form URL
-  const googleFormUrl = "https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?embedded=true";
-  
-  // For now, using a placeholder that shows a styled booking form
-  const useEmbeddedForm = false; // Set to true when you have a real Google Form
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    serviceType: "",
+    propertyType: "",
+    bedrooms: "",
+    bathrooms: "",
+    area: "",
+    preferredDate: "",
+    preferredTime: "",
+    notes: "",
+  });
+
+  const whatsappNumber = "1234567890"; // Replace with actual WhatsApp number
+
+  const handleChange = (field: string, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const sendToWhatsApp = () => {
+    const message = `
+*New Cleaning Booking Request*
+
+*Contact Information:*
+Name: ${formData.name}
+Phone: ${formData.phone}
+Email: ${formData.email || "Not provided"}
+
+*Service Details:*
+Service Type: ${formData.serviceType}
+Property Type: ${formData.propertyType}
+Bedrooms: ${formData.bedrooms}
+Bathrooms: ${formData.bathrooms}
+Area/Neighborhood: ${formData.area}
+
+*Preferred Schedule:*
+Date: ${formData.preferredDate}
+Time: ${formData.preferredTime}
+
+*Additional Notes:*
+${formData.notes || "None"}
+    `.trim();
+
+    const encodedMessage = encodeURIComponent(message);
+    window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, "_blank");
+  };
+
+  const isFormValid = formData.name && formData.phone && formData.serviceType && formData.propertyType;
 
   return (
     <section className="py-20 bg-muted/30" id="booking">
@@ -102,62 +158,238 @@ const BookingSection = () => {
               </div>
             </div>
 
-            {useEmbeddedForm ? (
-              <iframe
-                src={googleFormUrl}
-                width="100%"
-                height="800"
-                frameBorder="0"
-                marginHeight={0}
-                marginWidth={0}
-                className="rounded-xl"
-              >
-                Loading…
-              </iframe>
-            ) : (
-              <div className="space-y-6">
-                <p className="text-sm text-muted-foreground mb-4">
-                  👋 Click the button below to open our booking form and request your free quote!
-                </p>
-                
-                <a
-                  href="https://docs.google.com/forms/d/e/1FAIpQLSe_YOUR_FORM_ID/viewform"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-4 px-6 rounded-xl text-center transition-all duration-300 hover:shadow-lg hover:scale-[1.02]"
-                >
-                  📝 Open Booking Form
-                </a>
-
-                <div className="relative">
-                  <div className="absolute inset-0 flex items-center">
-                    <div className="w-full border-t border-border" />
-                  </div>
-                  <div className="relative flex justify-center text-sm">
-                    <span className="bg-card px-4 text-muted-foreground">or contact us directly</span>
-                  </div>
+            <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+              {/* Contact Info */}
+              <div className="space-y-4">
+                <div>
+                  <Label htmlFor="name" className="flex items-center gap-2 mb-2">
+                    <User size={16} className="text-primary" />
+                    Full Name *
+                  </Label>
+                  <Input
+                    id="name"
+                    placeholder="Your name"
+                    value={formData.name}
+                    onChange={(e) => handleChange("name", e.target.value)}
+                    className="rounded-xl"
+                  />
                 </div>
 
-                <div className="grid gap-4">
-                  <a
-                    href="tel:+1234567890"
-                    className="flex items-center justify-center gap-2 bg-secondary hover:bg-secondary/80 text-secondary-foreground font-medium py-3 px-6 rounded-xl transition-all duration-300"
-                  >
-                    📞 Call Us Now
-                  </a>
-                  <a
-                    href="mailto:contact@puretouchcleaning.com"
-                    className="flex items-center justify-center gap-2 bg-secondary hover:bg-secondary/80 text-secondary-foreground font-medium py-3 px-6 rounded-xl transition-all duration-300"
-                  >
-                    ✉️ Send Email
-                  </a>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="phone" className="flex items-center gap-2 mb-2">
+                      <Phone size={16} className="text-primary" />
+                      Phone *
+                    </Label>
+                    <Input
+                      id="phone"
+                      type="tel"
+                      placeholder="(123) 456-7890"
+                      value={formData.phone}
+                      onChange={(e) => handleChange("phone", e.target.value)}
+                      className="rounded-xl"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="email" className="flex items-center gap-2 mb-2">
+                      <Mail size={16} className="text-primary" />
+                      Email
+                    </Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder="email@example.com"
+                      value={formData.email}
+                      onChange={(e) => handleChange("email", e.target.value)}
+                      className="rounded-xl"
+                    />
+                  </div>
                 </div>
-
-                <p className="text-xs text-muted-foreground text-center mt-4">
-                  We typically respond within a few hours during business hours.
-                </p>
               </div>
-            )}
+
+              {/* Service Details */}
+              <div className="space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label className="flex items-center gap-2 mb-2">
+                      <Sparkles size={16} className="text-primary" />
+                      Service Type *
+                    </Label>
+                    <Select onValueChange={(value) => handleChange("serviceType", value)}>
+                      <SelectTrigger className="rounded-xl">
+                        <SelectValue placeholder="Select service" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="home">Home/Apartment</SelectItem>
+                        <SelectItem value="deep">Deep Cleaning</SelectItem>
+                        <SelectItem value="movein">Move In/Out</SelectItem>
+                        <SelectItem value="airbnb">Airbnb</SelectItem>
+                        <SelectItem value="office">Office/Commercial</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div>
+                    <Label className="flex items-center gap-2 mb-2">
+                      <Home size={16} className="text-primary" />
+                      Property Type *
+                    </Label>
+                    <Select onValueChange={(value) => handleChange("propertyType", value)}>
+                      <SelectTrigger className="rounded-xl">
+                        <SelectValue placeholder="Select type" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="apartment">Apartment</SelectItem>
+                        <SelectItem value="house">House</SelectItem>
+                        <SelectItem value="office">Office</SelectItem>
+                        <SelectItem value="airbnb">Airbnb</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label className="flex items-center gap-2 mb-2">
+                      <Bed size={16} className="text-primary" />
+                      Bedrooms
+                    </Label>
+                    <Select onValueChange={(value) => handleChange("bedrooms", value)}>
+                      <SelectTrigger className="rounded-xl">
+                        <SelectValue placeholder="Select" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="studio">Studio</SelectItem>
+                        <SelectItem value="1">1</SelectItem>
+                        <SelectItem value="2">2</SelectItem>
+                        <SelectItem value="3">3</SelectItem>
+                        <SelectItem value="4+">4+</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div>
+                    <Label className="flex items-center gap-2 mb-2">
+                      <Bath size={16} className="text-primary" />
+                      Bathrooms
+                    </Label>
+                    <Select onValueChange={(value) => handleChange("bathrooms", value)}>
+                      <SelectTrigger className="rounded-xl">
+                        <SelectValue placeholder="Select" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="1">1</SelectItem>
+                        <SelectItem value="2">2</SelectItem>
+                        <SelectItem value="3+">3+</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+              </div>
+
+              {/* Location & Schedule */}
+              <div className="space-y-4">
+                <div>
+                  <Label htmlFor="area" className="flex items-center gap-2 mb-2">
+                    <MapPin size={16} className="text-primary" />
+                    City / Neighborhood
+                  </Label>
+                  <Input
+                    id="area"
+                    placeholder="e.g., Downtown Chicago"
+                    value={formData.area}
+                    onChange={(e) => handleChange("area", e.target.value)}
+                    className="rounded-xl"
+                  />
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="date" className="flex items-center gap-2 mb-2">
+                      <Calendar size={16} className="text-primary" />
+                      Preferred Date
+                    </Label>
+                    <Input
+                      id="date"
+                      type="date"
+                      value={formData.preferredDate}
+                      onChange={(e) => handleChange("preferredDate", e.target.value)}
+                      className="rounded-xl"
+                    />
+                  </div>
+                  <div>
+                    <Label className="flex items-center gap-2 mb-2">
+                      <Clock size={16} className="text-primary" />
+                      Preferred Time
+                    </Label>
+                    <Select onValueChange={(value) => handleChange("preferredTime", value)}>
+                      <SelectTrigger className="rounded-xl">
+                        <SelectValue placeholder="Select time" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="morning">Morning</SelectItem>
+                        <SelectItem value="afternoon">Afternoon</SelectItem>
+                        <SelectItem value="evening">Evening</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+              </div>
+
+              {/* Notes */}
+              <div>
+                <Label htmlFor="notes" className="flex items-center gap-2 mb-2">
+                  <FileText size={16} className="text-primary" />
+                  Additional Notes
+                </Label>
+                <Textarea
+                  id="notes"
+                  placeholder="Pets, special requests, or any details we should know..."
+                  value={formData.notes}
+                  onChange={(e) => handleChange("notes", e.target.value)}
+                  className="rounded-xl min-h-[80px]"
+                />
+              </div>
+
+              {/* Submit Button */}
+              <Button
+                type="button"
+                onClick={sendToWhatsApp}
+                disabled={!isFormValid}
+                className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white font-semibold py-6 rounded-xl text-lg transition-all duration-300 hover:shadow-lg hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+              >
+                <MessageCircle size={22} className="mr-2" />
+                Send via WhatsApp
+              </Button>
+
+              <p className="text-xs text-muted-foreground text-center">
+                Your information will be sent securely via WhatsApp. We typically respond within a few hours.
+              </p>
+            </form>
+
+            <div className="relative my-6">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-border" />
+              </div>
+              <div className="relative flex justify-center text-sm">
+                <span className="bg-card px-4 text-muted-foreground">or contact us directly</span>
+              </div>
+            </div>
+
+            <div className="grid gap-3">
+              <a
+                href="tel:+1234567890"
+                className="flex items-center justify-center gap-2 bg-secondary hover:bg-secondary/80 text-secondary-foreground font-medium py-3 px-6 rounded-xl transition-all duration-300"
+              >
+                <Phone size={18} />
+                Call Us Now
+              </a>
+              <a
+                href="mailto:contact@puretouchcleaning.com"
+                className="flex items-center justify-center gap-2 bg-secondary hover:bg-secondary/80 text-secondary-foreground font-medium py-3 px-6 rounded-xl transition-all duration-300"
+              >
+                <Mail size={18} />
+                Send Email
+              </a>
+            </div>
           </motion.div>
         </div>
       </div>

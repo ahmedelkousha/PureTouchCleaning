@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Home, Sparkles, Truck, Building2, Briefcase, ArrowRight } from "lucide-react";
+import { Home, Sparkles, Truck, Building2, Briefcase, ArrowRight, Gift } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import livingRoom from "@/assets/clean-living-room.jpg";
 import officeImage from "@/assets/clean-office.jpg";
@@ -134,8 +134,9 @@ const ServicesSection = () => {
           </div>
           <div className="relative flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
-              <span className="inline-block bg-accent text-accent-foreground px-4 py-1 rounded-full text-sm font-semibold mb-4">
-                🎉 Special Offer
+              <span className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-4 py-1 rounded-full text-sm font-semibold mb-4">
+                <Gift size={16} />
+                Special Offer
               </span>
               <h3 className="font-display text-2xl md:text-3xl font-bold text-primary-foreground mb-2">
                 First-Time Customer Discount!

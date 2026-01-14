@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { MessageCircle, Calendar, Sparkles, Star, ArrowRight } from "lucide-react";
+import { MessageCircle, Calendar, Paintbrush, PersonStanding, ArrowRight } from "lucide-react";
 
 const steps = [
   {
@@ -15,13 +15,13 @@ const steps = [
     description: "We'll find the perfect time that works for your schedule.",
   },
   {
-    icon: Sparkles,
+    icon: Paintbrush,
     step: "03",
     title: "We Clean Professionally",
     description: "Our trained team arrives and delivers exceptional cleaning service.",
   },
   {
-    icon: Star,
+    icon: PersonStanding,
     step: "04",
     title: "Enjoy & Relax",
     description: "Your satisfaction is our goal. Enjoy your sparkling clean space!",

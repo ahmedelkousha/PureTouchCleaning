@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import livingRoom from "@/assets/clean-living-room.jpg";
 import officeImage from "@/assets/clean-office.jpg";
 import airbnbImage from "@/assets/airbnb-clean.jpg";
+import deepCleaningImage from "@/assets/deep-cleaning.jpg";
+import moveInCleaningImage from "@/assets/move-in-cleaning.jpg";
 
 const services = [
   {
@@ -17,14 +19,14 @@ const services = [
     icon: Sparkles,
     title: "Deep Cleaning",
     description: "Perfect for seasonal cleaning or before special occasions. We reach every corner.",
-    image: livingRoom,
+    image: deepCleaningImage,
     features: ["Thorough Scrubbing", "Behind Appliances", "Inside Cabinets", "Baseboards"],
   },
   {
     icon: Truck,
     title: "Move In/Out Cleaning",
     description: "Complete cleaning before or after moving to your new home.",
-    image: livingRoom,
+    image: moveInCleaningImage,
     features: ["Full Property", "All Surfaces", "Appliances", "Windows"],
   },
   {

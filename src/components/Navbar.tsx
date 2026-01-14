@@ -1,7 +1,8 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Sparkles, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import logo from "@/assets/logo.png";
 
 const navLinks = [
   { label: "Services", href: "#services" },
@@ -19,7 +20,7 @@ const Navbar = () => {
   const backgroundColor = useTransform(
     scrollY,
     [0, 100],
-    ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.95)"]
+    ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.98)"]
   );
 
   useEffect(() => {
@@ -46,20 +47,14 @@ const Navbar = () => {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
-            <a href="#" className="flex items-center gap-2">
-              <Sparkles
-                className={`transition-colors duration-300 ${
-                  isScrolled ? "text-primary" : "text-accent"
+            <a href="#" className="flex items-center">
+              <img 
+                src={logo} 
+                alt="Pure Touch Cleaning" 
+                className={`h-12 md:h-14 w-auto transition-all duration-300 ${
+                  isScrolled ? "" : "brightness-0 invert"
                 }`}
-                size={28}
               />
-              <span
-                className={`font-display text-xl font-bold transition-colors duration-300 ${
-                  isScrolled ? "text-foreground" : "text-primary-foreground"
-                }`}
-              >
-                Pure Touch
-              </span>
             </a>
 
             {/* Desktop Navigation */}
@@ -69,7 +64,7 @@ const Navbar = () => {
                   key={link.label}
                   href={link.href}
                   className={`font-medium transition-colors duration-300 hover:text-primary ${
-                    isScrolled ? "text-foreground" : "text-primary-foreground/90"
+                    isScrolled ? "text-foreground" : "text-white"
                   }`}
                 >
                   {link.label}
@@ -77,7 +72,7 @@ const Navbar = () => {
               ))}
               <Button
                 onClick={scrollToBooking}
-                className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold px-6 rounded-full"
+                className="bg-primary hover:bg-primary/90 text-white font-semibold px-6 rounded-full"
               >
                 Book Now
               </Button>
@@ -90,12 +85,12 @@ const Navbar = () => {
             >
               {isMobileMenuOpen ? (
                 <X
-                  className={isScrolled ? "text-foreground" : "text-primary-foreground"}
+                  className={isScrolled ? "text-foreground" : "text-white"}
                   size={28}
                 />
               ) : (
                 <Menu
-                  className={isScrolled ? "text-foreground" : "text-primary-foreground"}
+                  className={isScrolled ? "text-foreground" : "text-white"}
                   size={28}
                 />
               )}
@@ -127,7 +122,7 @@ const Navbar = () => {
             ))}
             <Button
               onClick={scrollToBooking}
-              className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold px-6 py-3 rounded-full mt-2"
+              className="bg-primary hover:bg-primary/90 text-white font-semibold px-6 py-3 rounded-full mt-2"
             >
               Book Now
             </Button>

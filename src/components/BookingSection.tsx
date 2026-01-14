@@ -301,8 +301,8 @@ ${formData.notes || "None"}
                   />
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="w-full">
                     <Label htmlFor="date" className="flex items-center gap-2 mb-2">
                       <Calendar size={16} className="text-primary" />
                       Preferred Date
@@ -312,16 +312,16 @@ ${formData.notes || "None"}
                       type="date"
                       value={formData.preferredDate}
                       onChange={(e) => handleChange("preferredDate", e.target.value)}
-                      className="rounded-xl"
+                      className="rounded-xl w-full"
                     />
                   </div>
-                  <div>
+                  <div className="w-full">
                     <Label className="flex items-center gap-2 mb-2">
                       <Clock size={16} className="text-primary" />
                       Preferred Time
                     </Label>
                     <Select onValueChange={(value) => handleChange("preferredTime", value)}>
-                      <SelectTrigger className="rounded-xl">
+                      <SelectTrigger className="rounded-xl w-full">
                         <SelectValue placeholder="Select time" />
                       </SelectTrigger>
                       <SelectContent>

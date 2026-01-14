@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { ArrowLeftRight, Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
+import livingRoomBefore from "@/assets/living-room-before.png";
+import livingRoomAfter from "@/assets/living-room-after.png";
 
 interface BeforeAfterItem {
   id: number;
@@ -22,8 +24,8 @@ const galleryItems: BeforeAfterItem[] = [
     id: 2,
     title: "Living Room Transformation",
     category: "Home Cleaning",
-    beforeImage: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop",
-    afterImage: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&h=400&fit=crop",
+    beforeImage: livingRoomBefore,
+    afterImage: livingRoomAfter,
   },
   {
     id: 3,

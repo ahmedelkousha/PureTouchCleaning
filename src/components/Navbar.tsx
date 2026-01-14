@@ -51,10 +51,7 @@ const Navbar = () => {
               <img 
                 src={logo} 
                 alt="Pure Touch Cleaning" 
-                className={`h-12 md:h-14 w-auto transition-all duration-300 ${
-                  isScrolled ? "" : "brightness-0 invert"
-                }`}
-                style={{ background: 'transparent' }}
+                className="h-12 md:h-14 w-auto transition-all duration-300"
               />
             </a>
 

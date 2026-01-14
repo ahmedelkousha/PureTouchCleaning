@@ -7,6 +7,8 @@ import kitchenBefore from "@/assets/kitchen-before.png";
 import kitchenAfter from "@/assets/kitchen-after.png";
 import bathroomBefore from "@/assets/bathroom-before.png";
 import bathroomAfter from "@/assets/bathroom-after.png";
+import officeBefore from "@/assets/office-before.png";
+import officeAfter from "@/assets/office-after.png";
 
 interface BeforeAfterItem {
   id: number;
@@ -42,8 +44,8 @@ const galleryItems: BeforeAfterItem[] = [
     id: 4,
     title: "Office Space",
     category: "Commercial",
-    beforeImage: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=400&fit=crop",
-    afterImage: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=600&h=400&fit=crop",
+    beforeImage: officeBefore,
+    afterImage: officeAfter,
   },
 ];
 

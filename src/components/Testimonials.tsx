@@ -1,6 +1,6 @@
-import { motion } from "framer-motion";
-import { Star, Quote } from "lucide-react";
-import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
 
 const testimonials = [
   {
@@ -61,13 +61,44 @@ const testimonials = [
 
 const Testimonials = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
+  const minSwipeDistance = 50;
+
+  const goToNext = useCallback(() => {
+    setActiveIndex((prev) => (prev + 1) % testimonials.length);
+  }, []);
+
+  const goToPrev = useCallback(() => {
+    setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  }, []);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
+    const interval = setInterval(goToNext, 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, [goToNext]);
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+    if (isLeftSwipe) {
+      goToNext();
+    } else if (isRightSwipe) {
+      goToPrev();
+    }
+  };
 
   return (
     <section className="py-20 bg-muted/30" id="testimonials">
@@ -90,37 +121,61 @@ const Testimonials = () => {
           </p>
         </motion.div>
 
-        {/* Featured Testimonial */}
-        <motion.div
-          key={activeIndex}
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.95 }}
-          transition={{ duration: 0.5 }}
-          className="max-w-3xl mx-auto mb-12"
+        {/* Featured Testimonial with Swipe Support */}
+        <div 
+          className="max-w-3xl mx-auto mb-12 relative"
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
         >
-          <div className="bg-card rounded-3xl p-8 md:p-12 shadow-xl border border-border relative">
-            <Quote className="absolute top-6 left-6 text-primary/20" size={48} />
-            <div className="relative">
-              <div className="flex justify-center mb-6">
-                {[...Array(testimonials[activeIndex].rating)].map((_, i) => (
-                  <Star key={i} className="text-accent fill-accent" size={24} />
-                ))}
+          {/* Navigation Arrows */}
+          <button
+            onClick={goToPrev}
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 z-10 bg-card hover:bg-muted border border-border rounded-full p-2 shadow-md transition-all"
+            aria-label="Previous testimonial"
+          >
+            <ChevronLeft className="text-foreground" size={24} />
+          </button>
+          <button
+            onClick={goToNext}
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 z-10 bg-card hover:bg-muted border border-border rounded-full p-2 shadow-md transition-all"
+            aria-label="Next testimonial"
+          >
+            <ChevronRight className="text-foreground" size={24} />
+          </button>
+
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeIndex}
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -50 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="bg-card rounded-3xl p-8 md:p-12 shadow-xl border border-border relative">
+                <Quote className="absolute top-6 left-6 text-primary/20" size={48} />
+                <div className="relative">
+                  <div className="flex justify-center mb-6">
+                    {[...Array(testimonials[activeIndex].rating)].map((_, i) => (
+                      <Star key={i} className="text-accent fill-accent" size={24} />
+                    ))}
+                  </div>
+                  <p className="text-xl md:text-2xl text-foreground text-center mb-8 font-medium italic">
+                    "{testimonials[activeIndex].content}"
+                  </p>
+                  <div className="text-center">
+                    <p className="font-display font-bold text-lg text-foreground">
+                      {testimonials[activeIndex].name}
+                    </p>
+                    <p className="text-muted-foreground text-sm">
+                      {testimonials[activeIndex].role}
+                    </p>
+                  </div>
+                </div>
               </div>
-              <p className="text-xl md:text-2xl text-foreground text-center mb-8 font-medium italic">
-                "{testimonials[activeIndex].content}"
-              </p>
-              <div className="text-center">
-                <p className="font-display font-bold text-lg text-foreground">
-                  {testimonials[activeIndex].name}
-                </p>
-                <p className="text-muted-foreground text-sm">
-                  {testimonials[activeIndex].role}
-                </p>
-              </div>
-            </div>
-          </div>
-        </motion.div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
 
         {/* Pagination Dots */}
         <div className="flex justify-center gap-3">

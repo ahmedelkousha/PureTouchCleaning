@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { MapPin, Phone, Sparkles, ArrowDown, Shield, Clock, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-cleaning.jpg";
+import heroMobileImage from "@/assets/hero-mobile.png";
 
 const HeroSection = () => {
   const scrollToBooking = () => {
@@ -18,10 +19,17 @@ const HeroSection = () => {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Professional Overlay */}
       <div className="absolute inset-0">
+        {/* Desktop background */}
         <img
           src={heroImage}
           alt="Clean modern home"
-          className="w-full h-full object-cover"
+          className="hidden md:block w-full h-full object-cover"
+        />
+        {/* Mobile background */}
+        <img
+          src={heroMobileImage}
+          alt="Professional cleaning team"
+          className="md:hidden w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/75 to-slate-900/50" />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-slate-900/30" />
@@ -154,13 +162,15 @@ const HeroSection = () => {
       </div>
 
       {/* Scroll Indicator */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/50"
+      <motion.button
+        onClick={() => document.getElementById("why-choose-us")?.scrollIntoView({ behavior: "smooth" })}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/50 hover:text-white/80 transition-colors cursor-pointer"
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
+        aria-label="Scroll to Why Choose Us"
       >
         <ArrowDown size={28} />
-      </motion.div>
+      </motion.button>
     </section>
   );
 };

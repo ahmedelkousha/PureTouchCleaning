@@ -9,6 +9,7 @@ import FAQSection from "@/components/FAQSection";
 import BookingSection from "@/components/BookingSection";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const Index = () => {
   return (
@@ -24,6 +25,7 @@ const Index = () => {
       <BookingSection />
       <Footer />
       <FloatingCTA />
+      <ScrollToTop />
     </main>
   );
 };

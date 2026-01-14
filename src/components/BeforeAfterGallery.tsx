@@ -5,6 +5,8 @@ import livingRoomBefore from "@/assets/living-room-before.png";
 import livingRoomAfter from "@/assets/living-room-after.png";
 import kitchenBefore from "@/assets/kitchen-before.png";
 import kitchenAfter from "@/assets/kitchen-after.png";
+import bathroomBefore from "@/assets/bathroom-before.png";
+import bathroomAfter from "@/assets/bathroom-after.png";
 
 interface BeforeAfterItem {
   id: number;
@@ -33,8 +35,8 @@ const galleryItems: BeforeAfterItem[] = [
     id: 3,
     title: "Bathroom Refresh",
     category: "Deep Cleaning",
-    beforeImage: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=600&h=400&fit=crop",
-    afterImage: "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=600&h=400&fit=crop",
+    beforeImage: bathroomBefore,
+    afterImage: bathroomAfter,
   },
   {
     id: 4,

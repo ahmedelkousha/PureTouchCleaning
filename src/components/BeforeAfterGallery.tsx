@@ -3,6 +3,8 @@ import { useState } from "react";
 import { ArrowLeftRight, Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
 import livingRoomBefore from "@/assets/living-room-before.png";
 import livingRoomAfter from "@/assets/living-room-after.png";
+import kitchenBefore from "@/assets/kitchen-before.png";
+import kitchenAfter from "@/assets/kitchen-after.png";
 
 interface BeforeAfterItem {
   id: number;
@@ -17,8 +19,8 @@ const galleryItems: BeforeAfterItem[] = [
     id: 1,
     title: "Kitchen Deep Clean",
     category: "Deep Cleaning",
-    beforeImage: "https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?w=600&h=400&fit=crop",
-    afterImage: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=400&fit=crop",
+    beforeImage: kitchenBefore,
+    afterImage: kitchenAfter,
   },
   {
     id: 2,

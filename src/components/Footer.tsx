@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { MapPin, Phone, Mail, Sparkles, Leaf } from "lucide-react";
+import { MapPin, Phone, Mail, Leaf, Sparkles } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -36,8 +37,11 @@ const Footer = () => {
           {/* Brand */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-2 mb-4">
-              <Sparkles className="text-accent" size={28} />
-              <span className="font-display text-2xl font-bold">Pure Touch</span>
+              <img 
+                src={logo} 
+                alt="Pure Touch Cleaning" 
+                className="h-14 w-auto brightness-0 invert"
+              />
             </div>
             <p className="text-primary-foreground/70 mb-6 max-w-md">
               Professional cleaning services in Chicago and surrounding suburbs. 

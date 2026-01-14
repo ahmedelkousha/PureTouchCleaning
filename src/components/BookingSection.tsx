@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Calendar, Clock, Sparkles, CheckCircle, MessageCircle, Send, Phone, Mail, User, Home, Bed, Bath, MapPin, FileText } from "lucide-react";
+import { Calendar, Clock, CalendarPlus, CheckCircle, MessageCircle, Send, Phone, Mail, User, Home, Bed, Bath, MapPin, FileText, Sparkles } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -146,7 +146,7 @@ ${formData.notes || "None"}
           >
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                <Sparkles className="text-primary" size={24} />
+                <CalendarPlus className="text-primary" size={24} />
               </div>
               <div>
                 <h3 className="font-display text-xl font-bold text-foreground">
@@ -302,7 +302,7 @@ ${formData.notes || "None"}
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
-                  <div>
+                  <div className="min-w-0">
                     <Label htmlFor="date" className="flex items-center gap-2 mb-2">
                       <Calendar size={16} className="text-primary" />
                       Preferred Date
@@ -312,16 +312,16 @@ ${formData.notes || "None"}
                       type="date"
                       value={formData.preferredDate}
                       onChange={(e) => handleChange("preferredDate", e.target.value)}
-                      className="rounded-xl"
+                      className="rounded-xl w-full"
                     />
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <Label className="flex items-center gap-2 mb-2">
                       <Clock size={16} className="text-primary" />
                       Preferred Time
                     </Label>
                     <Select onValueChange={(value) => handleChange("preferredTime", value)}>
-                      <SelectTrigger className="rounded-xl">
+                      <SelectTrigger className="rounded-xl w-full">
                         <SelectValue placeholder="Select time" />
                       </SelectTrigger>
                       <SelectContent>

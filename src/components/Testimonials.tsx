@@ -27,6 +27,36 @@ const testimonials = [
     content: "Our office has never looked better. The team is professional and reliable.",
     rating: 5,
   },
+  {
+    name: "Amanda T.",
+    role: "Working Mom",
+    content: "Life-saver for busy families! They pay attention to every detail and my kids love coming home to a clean house.",
+    rating: 5,
+  },
+  {
+    name: "Robert J.",
+    role: "Real Estate Agent",
+    content: "I trust Pure Touch for all my property showings. They make every home look its absolute best.",
+    rating: 5,
+  },
+  {
+    name: "Lisa C.",
+    role: "Condo Owner",
+    content: "Been using them for over a year now. Consistent quality and the team is always friendly and respectful.",
+    rating: 5,
+  },
+  {
+    name: "Marcus W.",
+    role: "Restaurant Owner",
+    content: "They handle our deep cleaning needs perfectly. Kitchen passes every health inspection with flying colors!",
+    rating: 5,
+  },
+  {
+    name: "Emily H.",
+    role: "New Homeowner",
+    content: "Used their move-in service and was blown away. The place looked brand new when they finished!",
+    rating: 5,
+  },
 ];
 
 const Testimonials = () => {
@@ -104,36 +134,6 @@ const Testimonials = () => {
                   : "bg-primary/30 hover:bg-primary/50"
               }`}
             />
-          ))}
-        </div>
-
-        {/* All Testimonials Grid for larger screens */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
-          {testimonials.map((testimonial, index) => (
-            <motion.div
-              key={testimonial.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              className={`bg-card rounded-2xl p-6 border transition-all duration-300 cursor-pointer ${
-                index === activeIndex
-                  ? "border-primary shadow-lg"
-                  : "border-border hover:border-primary/30"
-              }`}
-              onClick={() => setActiveIndex(index)}
-            >
-              <div className="flex gap-1 mb-3">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} className="text-accent fill-accent" size={14} />
-                ))}
-              </div>
-              <p className="text-foreground text-sm mb-4 line-clamp-3">
-                "{testimonial.content}"
-              </p>
-              <p className="font-semibold text-sm text-foreground">{testimonial.name}</p>
-              <p className="text-muted-foreground text-xs">{testimonial.role}</p>
-            </motion.div>
           ))}
         </div>
       </div>

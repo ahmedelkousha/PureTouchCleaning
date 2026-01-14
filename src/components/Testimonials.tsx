@@ -61,16 +61,19 @@ const testimonials = [
 
 const Testimonials = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [direction, setDirection] = useState(1); // 1 = forward, -1 = backward
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
   const minSwipeDistance = 50;
 
   const goToNext = useCallback(() => {
+    setDirection(1);
     setActiveIndex((prev) => (prev + 1) % testimonials.length);
   }, []);
 
   const goToPrev = useCallback(() => {
+    setDirection(-1);
     setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   }, []);
 
@@ -94,9 +97,9 @@ const Testimonials = () => {
     const isLeftSwipe = distance > minSwipeDistance;
     const isRightSwipe = distance < -minSwipeDistance;
     if (isLeftSwipe) {
-      goToPrev();
-    } else if (isRightSwipe) {
       goToNext();
+    } else if (isRightSwipe) {
+      goToPrev();
     }
   };
 
@@ -144,12 +147,12 @@ const Testimonials = () => {
             <ChevronRight className="text-foreground" size={24} />
           </button>
 
-          <AnimatePresence mode="wait">
+          <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={activeIndex}
-              initial={{ opacity: 0, x: 50 }}
+              initial={{ opacity: 0, x: 50 * direction }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -50 }}
+              exit={{ opacity: 0, x: -50 * direction }}
               transition={{ duration: 0.3 }}
             >
               <div className="bg-card rounded-3xl p-8 md:p-12 shadow-xl border border-border relative">

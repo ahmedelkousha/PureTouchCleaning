@@ -94,9 +94,9 @@ const Testimonials = () => {
     const isLeftSwipe = distance > minSwipeDistance;
     const isRightSwipe = distance < -minSwipeDistance;
     if (isLeftSwipe) {
-      goToNext();
-    } else if (isRightSwipe) {
       goToPrev();
+    } else if (isRightSwipe) {
+      goToNext();
     }
   };
 

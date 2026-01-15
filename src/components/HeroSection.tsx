@@ -164,12 +164,12 @@ const HeroSection = () => {
       {/* Scroll Indicator */}
       <motion.button
         onClick={() => document.getElementById("why-choose-us")?.scrollIntoView({ behavior: "smooth" })}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/50 hover:text-white/80 transition-colors cursor-pointer"
+        className="absolute text-center bottom-8 left-1/2 -translate-x-1/2 text-white/50 hover:text-white/80 transition-colors cursor-pointer"
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
         aria-label="Scroll to Why Choose Us"
       >
-        <ArrowDown size={28} />
+        <ArrowDown className=”text-center” size={28} />
       </motion.button>
     </section>
   );

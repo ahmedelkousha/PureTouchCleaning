@@ -169,7 +169,7 @@ const HeroSection = () => {
         transition={{ duration: 2, repeat: Infinity }}
         aria-label="Scroll to Why Choose Us"
       >
-        <ArrowDown className=”text-center” size={28} />
+        <ArrowDown size={28} />
       </motion.button>
     </section>
   );

@@ -1,118 +1,65 @@
-import { motion, AnimatePresence } from "framer-motion";
+"use client";
+
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
-import { useState, useEffect, useCallback } from "react";
+import { motion } from "framer-motion";
+
+// استيراد ملفات CSS الخاصة بـ Swiper
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 const testimonials = [
   {
     name: "Sarah M.",
     role: "Homeowner",
-    content: "Excellent service and always on time. Highly recommend Pure Touch Cleaning!",
+    content:
+      "Excellent service and always on time. Highly recommend Pure Touch Cleaning!",
     rating: 5,
   },
   {
     name: "Michael R.",
     role: "Property Manager",
-    content: "My house is sparkling! Professional and thorough work every time.",
+    content:
+      "My house is sparkling! Professional and thorough work every time.",
     rating: 5,
   },
   {
     name: "Jennifer L.",
     role: "Airbnb Host",
-    content: "Fast and precise Airbnb turnover cleaning. My ratings have never been better!",
+    content:
+      "Fast and precise Airbnb turnover cleaning. My ratings have never been better!",
     rating: 5,
   },
   {
     name: "David K.",
     role: "Business Owner",
-    content: "Our office has never looked better. The team is professional and reliable.",
+    content:
+      "Our office has never looked better. The team is professional and reliable.",
     rating: 5,
   },
   {
     name: "Amanda T.",
     role: "Working Mom",
-    content: "Life-saver for busy families! They pay attention to every detail and my kids love coming home to a clean house.",
-    rating: 5,
-  },
-  {
-    name: "Robert J.",
-    role: "Real Estate Agent",
-    content: "I trust Pure Touch for all my property showings. They make every home look its absolute best.",
-    rating: 5,
-  },
-  {
-    name: "Lisa C.",
-    role: "Condo Owner",
-    content: "Been using them for over a year now. Consistent quality and the team is always friendly and respectful.",
-    rating: 5,
-  },
-  {
-    name: "Marcus W.",
-    role: "Restaurant Owner",
-    content: "They handle our deep cleaning needs perfectly. Kitchen passes every health inspection with flying colors!",
-    rating: 5,
-  },
-  {
-    name: "Emily H.",
-    role: "New Homeowner",
-    content: "Used their move-in service and was blown away. The place looked brand new when they finished!",
+    content:
+      "Life-saver for busy families! They pay attention to every detail and my kids love coming home to a clean house.",
     rating: 5,
   },
 ];
 
 const Testimonials = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [direction, setDirection] = useState(1); // 1 = forward, -1 = backward
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [touchEnd, setTouchEnd] = useState<number | null>(null);
-
-  const minSwipeDistance = 50;
-
-  const goToNext = useCallback(() => {
-    setDirection(1);
-    setActiveIndex((prev) => (prev + 1) % testimonials.length);
-  }, []);
-
-  const goToPrev = useCallback(() => {
-    setDirection(-1);
-    setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  }, []);
-
-  useEffect(() => {
-    const interval = setInterval(goToNext, 5000);
-    return () => clearInterval(interval);
-  }, [goToNext]);
-
-  const onTouchStart = (e: React.TouchEvent) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const onTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
-    if (isLeftSwipe) {
-      goToNext();
-    } else if (isRightSwipe) {
-      goToPrev();
-    }
-  };
-
   return (
-    <section className="py-20 bg-muted/30" id="testimonials">
+    <section className="py-20 bg-muted/30 overflow-hidden" id="testimonials">
       <div className="container mx-auto px-4">
+        {/* عنوان القسم */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
+          className="text-center mb-16">
           <span className="inline-block text-primary font-semibold mb-4 tracking-wide uppercase text-sm">
             Testimonials
           </span>
@@ -124,75 +71,84 @@ const Testimonials = () => {
           </p>
         </motion.div>
 
-        {/* Featured Testimonial with Swipe Support */}
-        <div 
-          className="max-w-3xl mx-auto mb-12 relative"
-          onTouchStart={onTouchStart}
-          onTouchMove={onTouchMove}
-          onTouchEnd={onTouchEnd}
-        >
-          {/* Navigation Arrows */}
-          <button
-            onClick={goToPrev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 z-10 bg-card hover:bg-muted border border-border rounded-full p-2 shadow-md transition-all"
-            aria-label="Previous testimonial"
-          >
-            <ChevronLeft className="text-foreground" size={24} />
+        <div className="max-w-4xl mx-auto relative group">
+          {/* أزرار التنقل (Arrows) */}
+          <button className="swiper-prev-button absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-16 z-20 bg-card hover:bg-primary hover:text-white border border-border rounded-full p-3 shadow-lg transition-all duration-300 opacity-0 group-hover:opacity-100 hidden md:flex">
+            <ChevronLeft size={24} />
           </button>
-          <button
-            onClick={goToNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 z-10 bg-card hover:bg-muted border border-border rounded-full p-2 shadow-md transition-all"
-            aria-label="Next testimonial"
-          >
-            <ChevronRight className="text-foreground" size={24} />
+          <button className="swiper-next-button absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-16 z-20 bg-card hover:bg-primary hover:text-white border border-border rounded-full p-3 shadow-lg transition-all duration-300 opacity-0 group-hover:opacity-100 hidden md:flex">
+            <ChevronRight size={24} />
           </button>
 
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.div
-              key={activeIndex}
-              initial={{ opacity: 0, x: 50 * direction }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -50 * direction }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="bg-card rounded-3xl p-8 md:p-12 shadow-xl border border-border relative">
-                <Quote className="absolute top-6 left-6 text-primary/20" size={48} />
-                <div className="relative">
-                  <div className="flex justify-center mb-6">
-                    {[...Array(testimonials[activeIndex].rating)].map((_, i) => (
-                      <Star key={i} className="text-accent fill-accent" size={24} />
-                    ))}
-                  </div>
-                  <p className="text-xl md:text-2xl text-foreground text-center mb-8 font-medium italic">
-                    "{testimonials[activeIndex].content}"
-                  </p>
-                  <div className="text-center">
-                    <p className="font-display font-bold text-lg text-foreground">
-                      {testimonials[activeIndex].name}
+          {/* الكاروسيل */}
+          <Swiper
+            modules={[Autoplay, Pagination, Navigation]}
+            spaceBetween={30}
+            slidesPerView={1}
+            loop={true}
+            autoplay={{
+              delay: 5000,
+              disableOnInteraction: true,
+            }}
+            navigation={{
+              nextEl: ".swiper-next-button",
+              prevEl: ".swiper-prev-button",
+            }}
+            pagination={{
+              clickable: true,
+              el: ".custom-pagination",
+            }}
+            className="testimonial-swiper">
+            {testimonials.map((testimonial, index) => (
+              <SwiperSlide key={index}>
+                <div className="bg-card rounded-3xl p-8 md:p-12 shadow-xl border border-border relative mx-4 mb-10">
+                  <Quote
+                    className="absolute top-6 left-6 text-primary/10"
+                    size={60}
+                  />
+
+                  <div className="relative z-10">
+                    <div className="flex justify-center mb-6">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className="text-accent fill-accent"
+                          size={20}
+                        />
+                      ))}
+                    </div>
+
+                    <p className="text-lg md:text-2xl text-foreground text-center mb-8 font-medium italic leading-relaxed">
+                      "{testimonial.content}"
                     </p>
-                    <p className="text-muted-foreground text-sm">
-                      {testimonials[activeIndex].role}
-                    </p>
+
+                    <div className="text-center">
+                      <p className="font-display font-bold text-xl text-foreground">
+                        {testimonial.name}
+                      </p>
+                      <p className="text-primary font-medium text-sm">
+                        {testimonial.role}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
 
-        {/* Pagination Dots */}
-        <div className="flex justify-center gap-3">
-          {testimonials.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setActiveIndex(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                index === activeIndex
-                  ? "bg-primary w-8"
-                  : "bg-primary/30 hover:bg-primary/50"
-              }`}
-            />
-          ))}
+          {/* نقاط التنقل (Dots) - معالجة بالتيلويند لتجنب أخطاء TypeScript */}
+          <div
+            className="custom-pagination flex justify-center gap-2 mt-4 
+            [&_.swiper-pagination-bullet]:w-3 
+            [&_.swiper-pagination-bullet]:h-3 
+            [&_.swiper-pagination-bullet]:bg-primary 
+            [&_.swiper-pagination-bullet]:opacity-30 
+            [&_.swiper-pagination-bullet]:transition-all 
+            [&_.swiper-pagination-bullet]:duration-300 
+            [&_.swiper-pagination-bullet]:rounded-full
+            [&_.swiper-pagination-bullet-active]:opacity-100 
+            [&_.swiper-pagination-bullet-active]:w-8"
+          />
         </div>
       </div>
     </section>

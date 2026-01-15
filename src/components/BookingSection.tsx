@@ -1,10 +1,35 @@
 import { motion } from "framer-motion";
-import { Calendar, Clock, CalendarPlus, CheckCircle, MessageCircle, Send, Phone, Mail, User, Home, Bed, Bath, MapPin, FileText, Sparkles } from "lucide-react";
+import {
+  Calendar as CalendarIcon, // Renamed to avoid conflict with Calendar component
+  Clock,
+  CalendarPlus,
+  CheckCircle,
+  MessageCircle,
+  Phone,
+  Mail,
+  User,
+  Home,
+  Bed,
+  Bath,
+  MapPin,
+  FileText,
+  Sparkles,
+} from "lucide-react";
 import { useState } from "react";
+import { format } from "date-fns"; // Import for date formatting
+import { cn } from "@/lib/utils"; // Standard shadcn utility
+
+// UI Components
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { Calendar } from "@/components/ui/calendar"; // The Calendar Component
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import {
   Select,
   SelectContent,
@@ -23,15 +48,26 @@ const BookingSection = () => {
     bedrooms: "",
     bathrooms: "",
     area: "",
-    preferredDate: "",
+    preferredDate: "", // We will store this as a string "YYYY-MM-DD"
     preferredTime: "",
     notes: "",
   });
 
-  const whatsappNumber = "1234567890"; // Replace with actual WhatsApp number
+  // State to manage the Popover open/close status
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+
+  const whatsappNumber = "+201031299969";
 
   const handleChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
+  };
+
+  // Handler specifically for the Date Picker
+  const handleDateSelect = (date: Date | undefined) => {
+    if (date) {
+      handleChange("preferredDate", format(date, "yyyy-MM-dd"));
+      setIsCalendarOpen(false); // Close popover after selection
+    }
   };
 
   const sendToWhatsApp = () => {
@@ -39,7 +75,7 @@ const BookingSection = () => {
 *New Cleaning Booking Request*
 
 *Contact Information:*
-Name: ${formData.name}
+Name: ${formData.name} 
 Phone: ${formData.phone}
 Email: ${formData.email || "Not provided"}
 
@@ -59,10 +95,17 @@ ${formData.notes || "None"}
     `.trim();
 
     const encodedMessage = encodeURIComponent(message);
-    window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, "_blank");
+    window.open(
+      `https://wa.me/${whatsappNumber}?text=${encodedMessage}`,
+      "_blank"
+    );
   };
 
-  const isFormValid = formData.name && formData.phone && formData.serviceType && formData.propertyType;
+  const isFormValid =
+    formData.name &&
+    formData.phone &&
+    formData.serviceType &&
+    formData.propertyType;
 
   return (
     <section className="py-20 bg-muted/30" id="booking">
@@ -72,8 +115,7 @@ ${formData.notes || "None"}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
+          className="text-center mb-16">
           <span className="inline-block text-primary font-semibold mb-4 tracking-wide uppercase text-sm">
             Book Now
           </span>
@@ -81,7 +123,8 @@ ${formData.notes || "None"}
             Ready to Get <span className="text-primary">Started?</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Fill out the form below and we'll get back to you with a free quote within 24 hours.
+            Fill out the form below and we'll get back to you with a free quote
+            within 24 hours.
           </p>
         </motion.div>
 
@@ -92,8 +135,7 @@ ${formData.notes || "None"}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="space-y-8"
-          >
+            className="space-y-8">
             <div className="bg-card rounded-3xl p-8 border border-border">
               <h3 className="font-display text-2xl font-bold text-foreground mb-6">
                 Why Book With Us?
@@ -113,9 +155,11 @@ ${formData.notes || "None"}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: index * 0.1 }}
-                    className="flex items-center gap-3"
-                  >
-                    <CheckCircle className="text-primary flex-shrink-0" size={20} />
+                    className="flex items-center gap-3">
+                    <CheckCircle
+                      className="text-primary flex-shrink-0"
+                      size={20}
+                    />
                     <span className="text-foreground">{benefit}</span>
                   </motion.div>
                 ))}
@@ -124,14 +168,28 @@ ${formData.notes || "None"}
 
             <div className="grid grid-cols-2 gap-4">
               <div className="bg-primary rounded-2xl p-6 text-center">
-                <Calendar className="text-primary-foreground mx-auto mb-3" size={32} />
-                <p className="text-primary-foreground font-semibold">Flexible Dates</p>
-                <p className="text-primary-foreground/70 text-sm">7 days a week</p>
+                <CalendarIcon
+                  className="text-primary-foreground mx-auto mb-3"
+                  size={32}
+                />
+                <p className="text-primary-foreground font-semibold">
+                  Flexible Dates
+                </p>
+                <p className="text-primary-foreground/70 text-sm">
+                  7 days a week
+                </p>
               </div>
               <div className="bg-accent rounded-2xl p-6 text-center">
-                <Clock className="text-accent-foreground mx-auto mb-3" size={32} />
-                <p className="text-accent-foreground font-semibold">Quick Response</p>
-                <p className="text-accent-foreground/70 text-sm">Within 24 hours</p>
+                <Clock
+                  className="text-accent-foreground mx-auto mb-3"
+                  size={32}
+                />
+                <p className="text-accent-foreground font-semibold">
+                  Quick Response
+                </p>
+                <p className="text-accent-foreground/70 text-sm">
+                  Within 24 hours
+                </p>
               </div>
             </div>
           </motion.div>
@@ -142,8 +200,7 @@ ${formData.notes || "None"}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-card rounded-3xl p-8 shadow-xl border border-border"
-          >
+            className="bg-card rounded-3xl p-8 shadow-xl border border-border">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
                 <CalendarPlus className="text-primary" size={24} />
@@ -162,7 +219,9 @@ ${formData.notes || "None"}
               {/* Contact Info */}
               <div className="space-y-4">
                 <div>
-                  <Label htmlFor="name" className="flex items-center gap-2 mb-2">
+                  <Label
+                    htmlFor="name"
+                    className="flex items-center gap-2 mb-2">
                     <User size={16} className="text-primary" />
                     Full Name *
                   </Label>
@@ -171,13 +230,15 @@ ${formData.notes || "None"}
                     placeholder="Your name"
                     value={formData.name}
                     onChange={(e) => handleChange("name", e.target.value)}
-                    className="rounded-xl"
+                    className="rounded-xl h-10"
                   />
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <Label htmlFor="phone" className="flex items-center gap-2 mb-2">
+                    <Label
+                      htmlFor="phone"
+                      className="flex items-center gap-2 mb-2">
                       <Phone size={16} className="text-primary" />
                       Phone *
                     </Label>
@@ -187,11 +248,13 @@ ${formData.notes || "None"}
                       placeholder="(123) 456-7890"
                       value={formData.phone}
                       onChange={(e) => handleChange("phone", e.target.value)}
-                      className="rounded-xl"
+                      className="rounded-xl h-10"
                     />
                   </div>
                   <div>
-                    <Label htmlFor="email" className="flex items-center gap-2 mb-2">
+                    <Label
+                      htmlFor="email"
+                      className="flex items-center gap-2 mb-2">
                       <Mail size={16} className="text-primary" />
                       Email
                     </Label>
@@ -201,7 +264,7 @@ ${formData.notes || "None"}
                       placeholder="email@example.com"
                       value={formData.email}
                       onChange={(e) => handleChange("email", e.target.value)}
-                      className="rounded-xl"
+                      className="rounded-xl h-10"
                     />
                   </div>
                 </div>
@@ -215,8 +278,11 @@ ${formData.notes || "None"}
                       <Sparkles size={16} className="text-primary" />
                       Service Type *
                     </Label>
-                    <Select onValueChange={(value) => handleChange("serviceType", value)}>
-                      <SelectTrigger className="rounded-xl">
+                    <Select
+                      onValueChange={(value) =>
+                        handleChange("serviceType", value)
+                      }>
+                      <SelectTrigger className="rounded-xl h-10">
                         <SelectValue placeholder="Select service" />
                       </SelectTrigger>
                       <SelectContent>
@@ -224,7 +290,9 @@ ${formData.notes || "None"}
                         <SelectItem value="deep">Deep Cleaning</SelectItem>
                         <SelectItem value="movein">Move In/Out</SelectItem>
                         <SelectItem value="airbnb">Airbnb</SelectItem>
-                        <SelectItem value="office">Office/Commercial</SelectItem>
+                        <SelectItem value="office">
+                          Office/Commercial
+                        </SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -233,8 +301,11 @@ ${formData.notes || "None"}
                       <Home size={16} className="text-primary" />
                       Property Type *
                     </Label>
-                    <Select onValueChange={(value) => handleChange("propertyType", value)}>
-                      <SelectTrigger className="rounded-xl">
+                    <Select
+                      onValueChange={(value) =>
+                        handleChange("propertyType", value)
+                      }>
+                      <SelectTrigger className="rounded-xl h-10">
                         <SelectValue placeholder="Select type" />
                       </SelectTrigger>
                       <SelectContent>
@@ -253,8 +324,11 @@ ${formData.notes || "None"}
                       <Bed size={16} className="text-primary" />
                       Bedrooms
                     </Label>
-                    <Select onValueChange={(value) => handleChange("bedrooms", value)}>
-                      <SelectTrigger className="rounded-xl">
+                    <Select
+                      onValueChange={(value) =>
+                        handleChange("bedrooms", value)
+                      }>
+                      <SelectTrigger className="rounded-xl h-10">
                         <SelectValue placeholder="Select" />
                       </SelectTrigger>
                       <SelectContent>
@@ -271,8 +345,11 @@ ${formData.notes || "None"}
                       <Bath size={16} className="text-primary" />
                       Bathrooms
                     </Label>
-                    <Select onValueChange={(value) => handleChange("bathrooms", value)}>
-                      <SelectTrigger className="rounded-xl">
+                    <Select
+                      onValueChange={(value) =>
+                        handleChange("bathrooms", value)
+                      }>
+                      <SelectTrigger className="rounded-xl h-10">
                         <SelectValue placeholder="Select" />
                       </SelectTrigger>
                       <SelectContent>
@@ -288,7 +365,9 @@ ${formData.notes || "None"}
               {/* Location & Schedule */}
               <div className="space-y-4">
                 <div>
-                  <Label htmlFor="area" className="flex items-center gap-2 mb-2">
+                  <Label
+                    htmlFor="area"
+                    className="flex items-center gap-2 mb-2">
                     <MapPin size={16} className="text-primary" />
                     City / Neighborhood
                   </Label>
@@ -297,31 +376,65 @@ ${formData.notes || "None"}
                     placeholder="e.g., Downtown Chicago"
                     value={formData.area}
                     onChange={(e) => handleChange("area", e.target.value)}
-                    className="rounded-xl"
+                    className="rounded-xl h-10"
                   />
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
+                  {/* --- NEW DATE PICKER IMPLEMENTATION --- */}
                   <div className="min-w-0">
-                    <Label htmlFor="date" className="flex items-center gap-2 mb-2">
-                      <Calendar size={16} className="text-primary" />
+                    <Label
+                      htmlFor="date"
+                      className="flex items-center gap-2 mb-2 text-sm font-medium">
+                      <CalendarIcon size={16} className="text-primary" />
                       Preferred Date
                     </Label>
-                    <Input
-                      id="date"
-                      type="date"
-                      value={formData.preferredDate}
-                      onChange={(e) => handleChange("preferredDate", e.target.value)}
-                      className="rounded-xl w-full"
-                    />
+
+                    <Popover
+                      open={isCalendarOpen}
+                      onOpenChange={setIsCalendarOpen}>
+                      <PopoverTrigger asChild>
+                        <Button
+                          variant={"outline"}
+                          className={cn(
+                            "w-full h-10 rounded-xl px-3 justify-start text-left font-normal border-input bg-background hover:bg-background/90",
+                            !formData.preferredDate && "text-muted-foreground"
+                          )}>
+                          {formData.preferredDate ? (
+                            format(new Date(formData.preferredDate), "PPP") // e.g. "April 29th, 2024"
+                          ) : (
+                            <span>Select Date</span>
+                          )}
+                        </Button>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-auto p-0" align="start">
+                        <Calendar
+                          mode="single"
+                          selected={
+                            formData.preferredDate
+                              ? new Date(formData.preferredDate)
+                              : undefined
+                          }
+                          onSelect={handleDateSelect}
+                          initialFocus
+                          disabled={(date) => date < new Date()} // Disable past dates
+                        />
+                      </PopoverContent>
+                    </Popover>
                   </div>
+
+                  {/* --- Time Select --- */}
                   <div className="min-w-0">
-                    <Label className="flex items-center gap-2 mb-2">
+                    <Label className="flex items-center gap-2 mb-2 text-sm font-medium">
                       <Clock size={16} className="text-primary" />
                       Preferred Time
                     </Label>
-                    <Select onValueChange={(value) => handleChange("preferredTime", value)}>
-                      <SelectTrigger className="rounded-xl w-full">
+                    <Select
+                      value={formData.preferredTime}
+                      onValueChange={(value) =>
+                        handleChange("preferredTime", value)
+                      }>
+                      <SelectTrigger className="w-full h-10 rounded-xl px-3 text-base md:text-sm">
                         <SelectValue placeholder="Select time" />
                       </SelectTrigger>
                       <SelectContent>
@@ -332,6 +445,21 @@ ${formData.notes || "None"}
                     </Select>
                   </div>
                 </div>
+
+                {/* Reset Button */}
+                {(formData.preferredDate || formData.preferredTime) && (
+                  <div className="flex justify-end">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        handleChange("preferredDate", "");
+                        handleChange("preferredTime", "");
+                      }}
+                      className="text-xs text-red-500 hover:text-red-700 font-medium underline transition-colors">
+                      Reset Date & Time
+                    </button>
+                  </div>
+                )}
               </div>
 
               {/* Notes */}
@@ -354,14 +482,14 @@ ${formData.notes || "None"}
                 type="button"
                 onClick={sendToWhatsApp}
                 disabled={!isFormValid}
-                className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white font-semibold py-6 rounded-xl text-lg transition-all duration-300 hover:shadow-lg hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-              >
+                className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white font-semibold py-6 rounded-xl text-lg transition-all duration-300 hover:shadow-lg hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100">
                 <MessageCircle size={22} className="mr-2" />
                 Send via WhatsApp
               </Button>
 
               <p className="text-xs text-muted-foreground text-center">
-                Your information will be sent securely via WhatsApp. We typically respond within a few hours.
+                Your information will be sent securely via WhatsApp. We
+                typically respond within a few hours.
               </p>
             </form>
 
@@ -370,22 +498,22 @@ ${formData.notes || "None"}
                 <div className="w-full border-t border-border" />
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="bg-card px-4 text-muted-foreground">or contact us directly</span>
+                <span className="bg-card px-4 text-muted-foreground">
+                  or contact us directly
+                </span>
               </div>
             </div>
 
             <div className="grid gap-3">
               <a
                 href="tel:+1234567890"
-                className="flex items-center justify-center gap-2 bg-secondary hover:bg-secondary/80 text-secondary-foreground font-medium py-3 px-6 rounded-xl transition-all duration-300"
-              >
+                className="flex items-center justify-center gap-2 bg-secondary hover:bg-secondary/80 text-secondary-foreground font-medium py-3 px-6 rounded-xl transition-all duration-300">
                 <Phone size={18} />
                 Call Us Now
               </a>
               <a
                 href="mailto:contact@puretouchcleaning.com"
-                className="flex items-center justify-center gap-2 bg-secondary hover:bg-secondary/80 text-secondary-foreground font-medium py-3 px-6 rounded-xl transition-all duration-300"
-              >
+                className="flex items-center justify-center gap-2 bg-secondary hover:bg-secondary/80 text-secondary-foreground font-medium py-3 px-6 rounded-xl transition-all duration-300">
                 <Mail size={18} />
                 Send Email
               </a>

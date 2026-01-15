@@ -6,7 +6,7 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 
-// استيراد ملفات CSS الخاصة بـ Swiper
+// استيراد ملفات Swiper الأساسية
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -53,7 +53,7 @@ const Testimonials = () => {
   return (
     <section className="py-20 bg-muted/30 overflow-hidden" id="testimonials">
       <div className="container mx-auto px-4">
-        {/* عنوان القسم */}
+        {/* عنوان القسم بنفس تنسيقك الأصلي */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -72,11 +72,11 @@ const Testimonials = () => {
         </motion.div>
 
         <div className="max-w-4xl mx-auto relative group">
-          {/* أزرار التنقل (Arrows) */}
-          <button className="swiper-prev-button absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-16 z-20 bg-card hover:bg-primary hover:text-white border border-border rounded-full p-3 shadow-lg transition-all duration-300 opacity-0 group-hover:opacity-100 hidden md:flex">
+          {/* أزرار التنقل باستخدام ألوان Card و Primary */}
+          <button className="swiper-prev-button absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-16 z-20 bg-card hover:bg-primary hover:text-white border border-border rounded-full p-3 shadow-lg transition-all duration-300 opacity-0 group-hover:opacity-100 hidden md:flex text-foreground">
             <ChevronLeft size={24} />
           </button>
-          <button className="swiper-next-button absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-16 z-20 bg-card hover:bg-primary hover:text-white border border-border rounded-full p-3 shadow-lg transition-all duration-300 opacity-0 group-hover:opacity-100 hidden md:flex">
+          <button className="swiper-next-button absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-16 z-20 bg-card hover:bg-primary hover:text-white border border-border rounded-full p-3 shadow-lg transition-all duration-300 opacity-0 group-hover:opacity-100 hidden md:flex text-foreground">
             <ChevronRight size={24} />
           </button>
 
@@ -88,7 +88,7 @@ const Testimonials = () => {
             loop={true}
             autoplay={{
               delay: 5000,
-              disableOnInteraction: true,
+              disableOnInteraction: false,
             }}
             navigation={{
               nextEl: ".swiper-next-button",
@@ -102,12 +102,14 @@ const Testimonials = () => {
             {testimonials.map((testimonial, index) => (
               <SwiperSlide key={index}>
                 <div className="bg-card rounded-3xl p-8 md:p-12 shadow-xl border border-border relative mx-4 mb-10">
+                  {/* أيقونة الاقتباس بلون Primary شفاف كما في كودك */}
                   <Quote
-                    className="absolute top-6 left-6 text-primary/10"
+                    className="absolute top-6 left-6 text-primary/20"
                     size={60}
                   />
 
-                  <div className="relative z-10">
+                  <div className="relative z-10 text-center">
+                    {/* النجوم بلون Accent كما طلبت */}
                     <div className="flex justify-center mb-6">
                       {[...Array(testimonial.rating)].map((_, i) => (
                         <Star
@@ -118,11 +120,11 @@ const Testimonials = () => {
                       ))}
                     </div>
 
-                    <p className="text-lg md:text-2xl text-foreground text-center mb-8 font-medium italic leading-relaxed">
+                    <p className="text-xl md:text-2xl text-foreground mb-8 font-medium italic leading-relaxed">
                       "{testimonial.content}"
                     </p>
 
-                    <div className="text-center">
+                    <div>
                       <p className="font-display font-bold text-xl text-foreground">
                         {testimonial.name}
                       </p>
@@ -136,18 +138,18 @@ const Testimonials = () => {
             ))}
           </Swiper>
 
-          {/* نقاط التنقل (Dots) - معالجة بالتيلويند لتجنب أخطاء TypeScript */}
+          {/* نظام النقاط المطور بألوان Primary الخاصة بك */}
           <div
             className="custom-pagination flex justify-center gap-2 mt-4 
             [&_.swiper-pagination-bullet]:w-3 
             [&_.swiper-pagination-bullet]:h-3 
-            [&_.swiper-pagination-bullet]:bg-primary 
-            [&_.swiper-pagination-bullet]:opacity-30 
+            [&_.swiper-pagination-bullet]:bg-primary/30        /* لون النقطة غير النشطة */
             [&_.swiper-pagination-bullet]:transition-all 
-            [&_.swiper-pagination-bullet]:duration-300 
+            [&_.swiper-pagination-bullet]:duration-500 
             [&_.swiper-pagination-bullet]:rounded-full
-            [&_.swiper-pagination-bullet-active]:opacity-100 
-            [&_.swiper-pagination-bullet-active]:w-8"
+            [&_.swiper-pagination-bullet-active]:bg-primary    /* لون النقطة النشطة */
+            [&_.swiper-pagination-bullet-active]:w-10         /* تمدد النقطة النشطة */
+            [&_.swiper-pagination-bullet-active]:opacity-100"
           />
         </div>
       </div>

@@ -49,13 +49,13 @@ const galleryItems: BeforeAfterItem[] = [
     beforeImage: officeBefore,
     afterImage: officeAfter,
   },
-  {
-    id: 4,
-    title: "Office Space",
-    category: "Commercial",
-    beforeImage: officeBefore,
-    afterImage: officeAfter,
-  },
+  // {
+  //   id: 4,
+  //   title: "Office Space",
+  //   category: "Commercial",
+  //   beforeImage: officeBefore,
+  //   afterImage: officeAfter,
+  // },
   
   {
     id: 5,

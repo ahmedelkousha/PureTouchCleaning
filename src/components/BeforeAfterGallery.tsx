@@ -9,6 +9,8 @@ import bathroomBefore from "@/assets/bathroom-before.png";
 import bathroomAfter from "@/assets/bathroom-after.png";
 import officeBefore from "@/assets/office-before.png";
 import officeAfter from "@/assets/office-after.png";
+import ManagerOfficeAfter from "@/assets/manager-office-after.jpg";
+import ManagerOfficeBefore from "@/assets/manager-office-before.jpg";
 
 interface BeforeAfterItem {
   id: number;
@@ -46,6 +48,21 @@ const galleryItems: BeforeAfterItem[] = [
     category: "Commercial",
     beforeImage: officeBefore,
     afterImage: officeAfter,
+  },
+  {
+    id: 4,
+    title: "Office Space",
+    category: "Commercial",
+    beforeImage: officeBefore,
+    afterImage: officeAfter,
+  },
+  
+  {
+    id: 5,
+    title: "Manager Office",
+    category: "Commercial ",
+    beforeImage: ManagerOfficeBefore,
+    afterImage: ManagerOfficeAfter,
   },
 ];
 

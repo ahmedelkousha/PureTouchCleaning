@@ -91,19 +91,19 @@ const Footer = () => {
               <li className="flex items-center gap-3">
                 <Phone className="text-accent flex-shrink-0" size={18} />
                 <a
-                  href="tel:+1234567890"
+                  href="tel:+1 (270) 801-5639"
                   className="text-primary-foreground/70 hover:text-accent transition-colors"
                 >
-                  (123) 456-7890
+                  +1 (270) 801-5639
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="text-accent flex-shrink-0" size={18} />
                 <a
-                  href="mailto:contact@puretouchcleaning.com"
+                  href="mailto:info@puretouchus.com"
                   className="text-primary-foreground/70 hover:text-accent transition-colors"
                 >
-                  contact@puretouchcleaning.com
+                 info@puretouchus.com
                 </a>
               </li>
             </ul>

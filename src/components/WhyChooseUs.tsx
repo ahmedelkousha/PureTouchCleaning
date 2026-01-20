@@ -6,7 +6,7 @@ const features = [
   {
     icon: Users,
     title: "Trained & Committed Team",
-    description: "Our cleaners are trained and commited to quality.",
+    description: "Our cleaners are trained and committed to quality.",
   },
   {
     icon: Clock,
@@ -25,7 +25,7 @@ const features = [
   },
   {
     icon: DollarSign,
-    title: "Simple Honest Pricing",
+    title: "Simple, Honest Pricing",
     description: "What you see is what you pay.",
   },
   {

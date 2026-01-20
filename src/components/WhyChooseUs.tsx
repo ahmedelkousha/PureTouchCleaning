@@ -5,7 +5,7 @@ import cleanerImage from "@/assets/cleaner-professional.jpg";
 const features = [
   {
     icon: Users,
-    title: "Trained & Committed Team",
+    title: "A Team You Can Rely On",
     description: "Our cleaners are trained and committed to quality.",
   },
   {

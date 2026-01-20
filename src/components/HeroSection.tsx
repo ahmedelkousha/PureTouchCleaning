@@ -11,7 +11,7 @@ const HeroSection = () => {
 
   const features = [
     { icon: Shield, text: "Licensed & Insured" },
-    { icon: Clock, text: "Same Day Available" },
+    { icon: Clock, text: "Upon your request" },
     { icon: Award, text: "5-Star Rated" },
   ];
 
@@ -96,9 +96,9 @@ const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg md:text-xl text-white/80 mb-8 max-w-2xl leading-relaxed"
           >
-            Looking for a reliable cleaning company that's punctual and meticulous? 
-            We're here to give you a spotless home or office, stress-free.
-          </motion.p>
+            Looking for a reliable cleaning company that's always on time and pays attention to details?
+            We're here to keep your home or office clean and comfortable-without the stress.
+            </motion.p>
 
           {/* Feature Pills */}
           <motion.div

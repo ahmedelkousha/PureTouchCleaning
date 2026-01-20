@@ -6,32 +6,32 @@ const features = [
   {
     icon: Users,
     title: "Trained & Committed Team",
-    description: "Our professional cleaners are thoroughly vetted and trained",
+    description: "Our cleaners are trained and commited to quality.",
   },
   {
     icon: Clock,
-    title: "Punctual Service",
-    description: "We respect your time and always arrive on schedule",
+    title: "Respectful of Your Time",
+    description: "We plan our visits carefully and arrive as expected.",
   },
   {
     icon: Shield,
     title: "Safe Cleaning Products",
-    description: "Eco-friendly and family-safe cleaning solutions",
+    description: "Eco-friendly and family-safe cleaning solutions.",
   },
   {
     icon: Eye,
     title: "Attention to Detail",
-    description: "We don't miss a spot - every corner matters to us",
+    description: "We don't miss a spot - every corner matters to us.",
   },
   {
     icon: DollarSign,
-    title: "Transparent Pricing",
-    description: "Clear rates with no hidden fees or surprises",
+    title: "Simple Honest Pricing",
+    description: "What you see is what you pay.",
   },
   {
     icon: Heart,
     title: "Satisfaction Guaranteed",
-    description: "Your happiness is our priority",
+    description: "Your happiness is our priority.",
   },
 ];
 
@@ -60,7 +60,7 @@ const WhyChooseUs = () => {
             <span className="text-primary">We Care</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            We deliver more than sparkling spaces - we bring you peace of mind and trust.
+            Beyond cleaning, we deliver trust, reliability, and total peace of mind.
           </p>
         </motion.div>
 

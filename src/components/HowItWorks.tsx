@@ -37,8 +37,7 @@ const HowItWorks = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
+          className="text-center mb-16">
           <span className="inline-block text-primary font-semibold mb-4 tracking-wide uppercase text-sm">
             How It Works
           </span>
@@ -52,7 +51,12 @@ const HowItWorks = () => {
 
         <div className="relative">
           {/* Connection Line */}
-          <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-primary/20 via-primary to-primary/20 -translate-y-1/2" />
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.2, delay: 0.45 }}
+            className="hidden lg:hidden absolute top-1/2 left-0 right-0 h-[0.1rem] bg-primary -translate-y-1/2"></motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {steps.map((step, index) => (
@@ -61,31 +65,28 @@ const HowItWorks = () => {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.15 }}
-                className="relative"
-              >
-                <div className="bg-background rounded-3xl p-8 text-center border border-border hover:border-primary/30 hover:shadow-lg transition-all duration-300 relative z-10">
+                transition={{ duration: 0.2, delay: 0.15 * index }}
+                className="relative">
+                <div className="bg-background rounded-3xl p-8 text-center border border-border hover:border-primary/30 hover:shadow-lg relative z-10">
                   {/* Step Number */}
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-accent text-accent-foreground w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shadow-md">
                     {index + 1}
                   </div>
-                  
+
                   {/* Icon */}
                   <div className="w-16 h-16 mx-auto rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
                     <step.icon className="text-primary" size={32} />
                   </div>
-                  
+
                   <h3 className="font-display font-bold text-xl text-foreground mb-3">
                     {step.title}
                   </h3>
-                  <p className="text-muted-foreground">
-                    {step.description}
-                  </p>
+                  <p className="text-muted-foreground">{step.description}</p>
                 </div>
 
                 {/* Arrow for desktop */}
                 {index < steps.length - 1 && (
-                  <div className="hidden lg:block absolute top-1/2 -right-4 text-primary -translate-y-1/2 z-20">
+                  <div className="hidden lg:block absolute top-1/2 -right-7 text-primary -translate-y-1/2 z-20">
                     <ArrowRight size={24} />
                   </div>
                 )}

@@ -49,14 +49,7 @@ const galleryItems: BeforeAfterItem[] = [
     beforeImage: officeBefore,
     afterImage: officeAfter,
   },
-  // {
-  //   id: 4,
-  //   title: "Office Space",
-  //   category: "Commercial",
-  //   beforeImage: officeBefore,
-  //   afterImage: officeAfter,
-  // },
-  
+
   {
     id: 5,
     title: "Manager Office",
@@ -82,14 +75,14 @@ const BeforeAfterCard = ({ item }: { item: BeforeAfterItem }) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
       className="group"
     >
       <div
-        className="relative h-64 md:h-80 rounded-2xl overflow-hidden cursor-ew-resize shadow-lg border border-border"
+        className="relative h-64 md:h-80 rounded-2xl overflow-hidden cursor-grab shadow-lg border border-border"
         onMouseDown={() => setIsDragging(true)}
         onMouseUp={() => setIsDragging(false)}
         onMouseLeave={() => setIsDragging(false)}

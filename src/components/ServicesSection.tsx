@@ -58,8 +58,7 @@ const ServicesSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
+          className="text-center mb-16">
           <span className="inline-block text-primary font-semibold mb-4 tracking-wide uppercase text-sm">
             Our Services
           </span>
@@ -68,7 +67,8 @@ const ServicesSection = () => {
             <span className="text-primary">Solutions</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            From homes to offices, we have the expertise to make any space sparkle.
+            From homes to offices, we have the expertise to make any space
+            sparkle.
           </p>
         </motion.div>
 
@@ -79,9 +79,8 @@ const ServicesSection = () => {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group bg-card rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-border hover:border-primary/20"
-            >
+              transition={{ duration: 0.2, delay: 0.13 * index }}
+              className="group bg-card rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl  border border-border hover:border-primary/20">
               <div className="relative h-48 overflow-hidden">
                 <img
                   src={service.image}
@@ -104,8 +103,7 @@ const ServicesSection = () => {
                   {service.features.map((feature) => (
                     <span
                       key={feature}
-                      className="text-xs bg-secondary text-secondary-foreground px-3 py-1 rounded-full"
-                    >
+                      className="text-xs bg-secondary text-secondary-foreground px-3 py-1 rounded-full">
                       {feature}
                     </span>
                   ))}
@@ -113,10 +111,12 @@ const ServicesSection = () => {
                 <Button
                   variant="ghost"
                   className="group/btn text-primary hover:text-primary hover:bg-primary/10 p-0"
-                  onClick={scrollToBooking}
-                >
+                  onClick={scrollToBooking}>
                   Book Now
-                  <ArrowRight className="ml-2 group-hover/btn:translate-x-1 transition-transform" size={18} />
+                  <ArrowRight
+                    className="ml-2 group-hover/btn:translate-x-1 transition-transform"
+                    size={18}
+                  />
                 </Button>
               </div>
             </motion.div>
@@ -129,8 +129,7 @@ const ServicesSection = () => {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mt-16 relative overflow-hidden rounded-3xl bg-gradient-to-r from-primary to-primary/80 p-8 md:p-12"
-        >
+          className="mt-16 relative overflow-hidden rounded-3xl bg-gradient-to-r from-primary to-primary/80 p-8 md:p-12">
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-0 right-0 w-96 h-96 bg-accent rounded-full blur-3xl translate-x-1/2 -translate-y-1/2" />
           </div>
@@ -150,8 +149,7 @@ const ServicesSection = () => {
             <Button
               size="lg"
               onClick={scrollToBooking}
-              className="sparkle-button bg-accent hover:bg-accent/90 text-accent-foreground font-semibold px-8 py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 whitespace-nowrap"
-            >
+              className="sparkle-button bg-accent hover:bg-accent/90 text-accent-foreground font-semibold px-8 py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 whitespace-nowrap">
               Claim Your Discount
             </Button>
           </div>

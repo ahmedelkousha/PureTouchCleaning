@@ -5,10 +5,10 @@ import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.png";
 
 const navLinks = [
-  { label: "Services", href: "services" },
-  { label: "Our Results", href: "our-results" },
   { label: "Why Choose Us", href: "why-choose-us" },
+  { label: "Services", href: "services" },
   { label: "How It Works", href: "how-it-works" },
+  { label: "Our Results", href: "our-results" },
   { label: "Testimonials", href: "testimonials" },
   { label: "FAQ", href: "faq" },
 ];
@@ -23,7 +23,7 @@ const Navbar = () => {
   const backgroundColor = useTransform(
     scrollY,
     [0, 10],
-    ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.98)"]
+    ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.98)"],
   );
 
   useEffect(() => {
@@ -61,11 +61,9 @@ const Navbar = () => {
     };
 
     document.addEventListener("mousedown", handleClickOutside);
-    document.addEventListener("touchstart", handleClickOutside);
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("touchstart", handleClickOutside);
     };
   }, [isMobileMenuOpen]);
 
@@ -102,14 +100,14 @@ const Navbar = () => {
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center gap-8">
               {navLinks.map((link) => (
-                <a
+                <button
                   key={link.label}
-                  href={link.href}
+                  onClick={() => scrollToSection(link.href)}
                   className={`font-medium transition-colors duration-300 hover:text-primary ${
                     isScrolled ? "text-foreground" : "text-white"
                   }`}>
                   {link.label}
-                </a>
+                </button>
               ))}
               <Button
                 onClick={() => scrollToSection("booking")}

@@ -11,7 +11,7 @@ const HeroSection = () => {
 
   const features = [
     { icon: Shield, text: "Licensed & Insured" },
-    { icon: Clock, text: "Same Day Available" },
+    { icon: Clock, text: "Upon your request" },
     { icon: Award, text: "5-Star Rated" },
   ];
 
@@ -96,9 +96,9 @@ const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg md:text-xl text-white/80 mb-8 max-w-2xl leading-relaxed"
           >
-            Looking for a reliable cleaning company that's punctual and meticulous? 
-            We're here to give you a spotless home or office, stress-free.
-          </motion.p>
+            Looking for a reliable cleaning company that's always on time and pays attention to details?
+            We're here to keep your home or office clean and comfortable-without the stress.
+            </motion.p>
 
           {/* Feature Pills */}
           <motion.div
@@ -160,11 +160,10 @@ const HeroSection = () => {
           </motion.div>
         </div>
       </div>
-
-      {/* Scroll Indicator */}
+{/* Scroll Indicator */}
       <motion.button
         onClick={() => document.getElementById("why-choose-us")?.scrollIntoView({ behavior: "smooth" })}
-        className="absolute text-center bottom-8 left-1/2 -translate-x-1/2 text-white/50 hover:text-white/80 transition-colors cursor-pointer"
+        className="absolute bottom-8 left-0 right-0 mx-auto w-fit z-20 text-white/50 hover:text-white/80 transition-colors cursor-pointer p-4"
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
         aria-label="Scroll to Why Choose Us"

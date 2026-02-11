@@ -34,9 +34,9 @@ const ScrollToTop = () => {
           <ArrowUp size={24} />
           
           {/* Tooltip */}
-          <span className="absolute left-full ml-3 bg-card text-foreground px-3 py-2 rounded-lg shadow-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity border border-border">
+          {/* <span className="absolute left-full ml-3 bg-card text-foreground px-3 py-2 rounded-lg shadow-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity border border-border">
             Back to top
-          </span>
+          </span> */}
         </motion.button>
       )}
     </AnimatePresence>

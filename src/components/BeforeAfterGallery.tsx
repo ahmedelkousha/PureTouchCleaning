@@ -9,6 +9,8 @@ import bathroomBefore from "@/assets/bathroom-before.png";
 import bathroomAfter from "@/assets/bathroom-after.png";
 import officeBefore from "@/assets/office-before.png";
 import officeAfter from "@/assets/office-after.png";
+import ManagerOfficeAfter from "@/assets/manager-office-after.jpg";
+import ManagerOfficeBefore from "@/assets/manager-office-before.jpg";
 
 interface BeforeAfterItem {
   id: number;
@@ -47,6 +49,14 @@ const galleryItems: BeforeAfterItem[] = [
     beforeImage: officeBefore,
     afterImage: officeAfter,
   },
+
+  {
+    id: 5,
+    title: "Manager Office",
+    category: "Commercial ",
+    beforeImage: ManagerOfficeBefore,
+    afterImage: ManagerOfficeAfter,
+  },
 ];
 
 const BeforeAfterCard = ({ item }: { item: BeforeAfterItem }) => {
@@ -65,14 +75,14 @@ const BeforeAfterCard = ({ item }: { item: BeforeAfterItem }) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
       className="group"
     >
       <div
-        className="relative h-64 md:h-80 rounded-2xl overflow-hidden cursor-ew-resize shadow-lg border border-border"
+        className="relative h-64 md:h-80 rounded-2xl overflow-hidden cursor-grab shadow-lg border border-border"
         onMouseDown={() => setIsDragging(true)}
         onMouseUp={() => setIsDragging(false)}
         onMouseLeave={() => setIsDragging(false)}

@@ -1,10 +1,31 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X, Sparkles, Phone } from "lucide-react";
-import { useState, useEffect, forwardRef } from "react";
+import { useState, useEffect, forwardRef, useRef } from "react";
 
 const FloatingCTA = forwardRef<HTMLDivElement>((_, ref) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+const floatingCtaRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent | TouchEvent) => {
+      if (
+        isExpanded &&
+        floatingCtaRef.current &&
+        !floatingCtaRef.current.contains(event.target as Node)
+      ) {
+        setIsExpanded(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
+  }, [isExpanded]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,6 +55,7 @@ const FloatingCTA = forwardRef<HTMLDivElement>((_, ref) => {
             {isExpanded ? (
               <motion.div
                 key="expanded"
+                ref={floatingCtaRef}
                 initial={{ opacity: 0, scale: 0.9, y: 10 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.9, y: 10 }}
@@ -87,10 +109,10 @@ const FloatingCTA = forwardRef<HTMLDivElement>((_, ref) => {
                 <span className="absolute inset-0 rounded-full bg-primary animate-ping opacity-20" />
                 
                 {/* Tooltip */}
-                <span className="absolute right-full mr-3 bg-card text-foreground px-3 py-2 rounded-lg shadow-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity border border-border flex items-center gap-2">
+                {/* <span className="absolute right-full mr-3 bg-card text-foreground px-3 py-2 rounded-lg shadow-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity border border-border flex items-center gap-2">
                   <Sparkles size={14} className="text-accent" />
                   Get a Quote!
-                </span>
+                </span> */}
               </motion.button>
             )}
           </AnimatePresence>

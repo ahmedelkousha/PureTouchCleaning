@@ -56,7 +56,7 @@ const BookingSection = () => {
   // State to manage the Popover open/close status
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
 
-  const whatsappNumber = "+201031299969";
+  const whatsappNumber = "+12708015639";
 
   const handleChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -245,7 +245,7 @@ ${formData.notes || "None"}
                     <Input
                       id="phone"
                       type="tel"
-                      placeholder="(123) 456-7890"
+                      placeholder="+1 (234) 567-8900"
                       value={formData.phone}
                       onChange={(e) => handleChange("phone", e.target.value)}
                       className="rounded-xl h-10"
@@ -506,13 +506,13 @@ ${formData.notes || "None"}
 
             <div className="grid gap-3">
               <a
-                href="tel:+1234567890"
+                href="tel:+1 (270) 801-5639"
                 className="flex items-center justify-center gap-2 bg-secondary hover:bg-secondary/80 text-secondary-foreground font-medium py-3 px-6 rounded-xl transition-all duration-300">
                 <Phone size={18} />
                 Call Us Now
               </a>
               <a
-                href="mailto:contact@puretouchcleaning.com"
+                href="mailto:info@puretouchus.com"
                 className="flex items-center justify-center gap-2 bg-secondary hover:bg-secondary/80 text-secondary-foreground font-medium py-3 px-6 rounded-xl transition-all duration-300">
                 <Mail size={18} />
                 Send Email

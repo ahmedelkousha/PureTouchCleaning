@@ -5,33 +5,33 @@ import cleanerImage from "@/assets/cleaner-professional.jpg";
 const features = [
   {
     icon: Users,
-    title: "Trained & Committed Team",
-    description: "Our professional cleaners are thoroughly vetted and trained",
+    title: "A Team You Can Rely On",
+    description: "Our cleaners are trained and committed to quality.",
   },
   {
     icon: Clock,
-    title: "Punctual Service",
-    description: "We respect your time and always arrive on schedule",
+    title: "Respectful of Your Time",
+    description: "We plan our visits carefully and arrive as expected.",
   },
   {
     icon: Shield,
     title: "Safe Cleaning Products",
-    description: "Eco-friendly and family-safe cleaning solutions",
+    description: "Eco-friendly and family-safe cleaning solutions.",
   },
   {
     icon: Eye,
     title: "Attention to Detail",
-    description: "We don't miss a spot - every corner matters to us",
+    description: "We don't miss a spot - every corner matters to us.",
   },
   {
     icon: DollarSign,
-    title: "Transparent Pricing",
-    description: "Clear rates with no hidden fees or surprises",
+    title: "Simple, Honest Pricing",
+    description: "What you see is what you pay.",
   },
   {
     icon: Heart,
     title: "Satisfaction Guaranteed",
-    description: "Your happiness is our priority",
+    description: "Your happiness is our priority.",
   },
 ];
 
@@ -60,7 +60,7 @@ const WhyChooseUs = () => {
             <span className="text-primary">We Care</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            We deliver more than sparkling spaces - we bring you peace of mind and trust.
+            Beyond cleaning, we deliver trust, reliability, and total peace of mind.
           </p>
         </motion.div>
 
@@ -85,7 +85,7 @@ const WhyChooseUs = () => {
             <motion.div
               className="absolute -bottom-6 -right-6 bg-accent text-accent-foreground px-6 py-4 rounded-2xl shadow-lg"
               animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 3, repeat: Infinity }}
+              transition={{ duration: 1.4, repeat: Infinity}}
             >
               <p className="font-display font-bold text-2xl">100%</p>
               <p className="text-sm font-medium">Satisfaction</p>
@@ -100,8 +100,8 @@ const WhyChooseUs = () => {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="group p-6 bg-background rounded-2xl border border-border hover:border-primary/30 hover:shadow-lg transition-all duration-300"
+                transition={{ duration: 0.2, delay: 0.13 * index }}
+                className="group p-6 bg-background rounded-2xl border border-border hover:border-primary/30 hover:shadow-lg"
               >
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
                   <feature.icon size={24} className="text-primary group-hover:text-primary-foreground" />

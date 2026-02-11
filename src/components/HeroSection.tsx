@@ -163,10 +163,6 @@ const HeroSection = () => {
 {/* Scroll Indicator */}
       <motion.button
         onClick={() => document.getElementById("why-choose-us")?.scrollIntoView({ behavior: "smooth" })}
-        // التغييرات السحرية هنا:
-        // 1. شلنا left-1/2 و translate
-        // 2. حطينا left-0 و right-0 و mx-auto (دي بتجبره ييجي في النص بالظبط)
-        // 3. w-fit: عشان ياخد مساحة على قد حجمه بس
         className="absolute bottom-8 left-0 right-0 mx-auto w-fit z-20 text-white/50 hover:text-white/80 transition-colors cursor-pointer p-4"
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}

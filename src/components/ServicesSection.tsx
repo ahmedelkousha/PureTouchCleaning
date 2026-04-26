@@ -110,7 +110,7 @@ const ServicesSection = () => {
                 </div>
                 <Button
                   variant="ghost"
-                  className="group/btn text-primary hover:text-primary hover:bg-primary/10 p-0"
+                  className="group/btn text-primary hover:text-primary hover:bg-primary/10 p-3"
                   onClick={scrollToBooking}
                   aria-label={`Book ${service.title} now`}
                 >

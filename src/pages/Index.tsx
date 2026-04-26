@@ -13,20 +13,22 @@ import ScrollToTop from "@/components/ScrollToTop";
 
 const Index = () => {
   return (
-    <main className="overflow-x-hidden">
+    <div className="min-h-screen">
       <Navbar />
-      <HeroSection />
-      <WhyChooseUs />
-      <ServicesSection />
-      <HowItWorks />
-      <BeforeAfterGallery />
-      <Testimonials />
-      <FAQSection />
-      <BookingSection />
+      <main className="overflow-x-hidden">
+        <HeroSection />
+        <WhyChooseUs />
+        <ServicesSection />
+        <HowItWorks />
+        <BeforeAfterGallery />
+        <Testimonials />
+        <FAQSection />
+        <BookingSection />
+      </main>
       <Footer />
       <FloatingCTA />
       <ScrollToTop />
-    </main>
+    </div>
   );
 };
 

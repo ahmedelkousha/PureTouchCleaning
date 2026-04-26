@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
 import { Home, Sparkles, Truck, Building2, Briefcase, ArrowRight, Gift } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import livingRoom from "@/assets/clean-living-room.jpg";
-import officeImage from "@/assets/clean-office.jpg";
-import airbnbImage from "@/assets/airbnb-clean.jpg";
-import deepCleaningImage from "@/assets/deep-cleaning.jpg";
-import moveInCleaningImage from "@/assets/move-in-cleaning.jpg";
+import livingRoom from "@/assets/clean-living-room.webp";
+import officeImage from "@/assets/clean-office.webp";
+import airbnbImage from "@/assets/airbnb-clean.webp";
+import deepCleaningImage from "@/assets/deep-cleaning.webp";
+import moveInCleaningImage from "@/assets/move-in-cleaning.webp";
 
 const services = [
   {
@@ -111,7 +111,9 @@ const ServicesSection = () => {
                 <Button
                   variant="ghost"
                   className="group/btn text-primary hover:text-primary hover:bg-primary/10 p-0"
-                  onClick={scrollToBooking}>
+                  onClick={scrollToBooking}
+                  aria-label={`Book ${service.title} now`}
+                >
                   Book Now
                   <ArrowRight
                     className="ml-2 group-hover/btn:translate-x-1 transition-transform"
@@ -149,7 +151,9 @@ const ServicesSection = () => {
             <Button
               size="lg"
               onClick={scrollToBooking}
-              className="sparkle-button bg-accent hover:bg-accent/90 text-accent-foreground font-semibold px-8 py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 whitespace-nowrap">
+              className="sparkle-button bg-accent hover:bg-accent/90 text-accent-foreground font-semibold px-8 py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 whitespace-nowrap"
+              aria-label="Claim your first-time customer discount"
+            >
               Claim Your Discount
             </Button>
           </div>

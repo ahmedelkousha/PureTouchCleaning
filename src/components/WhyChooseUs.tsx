@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Users, Clock, Shield, Eye, DollarSign, Heart } from "lucide-react";
-import cleanerImage from "@/assets/cleaner-professional.jpg";
+import cleanerImage from "@/assets/cleaner-professional.webp";
 
 const features = [
   {

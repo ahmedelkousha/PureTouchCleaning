@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { MapPin, Phone, Mail, Leaf, Sparkles } from "lucide-react";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo.webp";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -39,7 +39,7 @@ const Footer = () => {
             <div className="flex items-center gap-2 mb-4">
               <img 
                 src={logo} 
-                alt="Pure Touch Cleaning" 
+                alt="Pure Touch Cleaning Logo" 
                 className="h-14 w-auto brightness-0 invert"
               />
             </div>
@@ -93,6 +93,7 @@ const Footer = () => {
                 <a
                   href="tel:+1 (270) 801-5639"
                   className="text-primary-foreground/70 hover:text-accent transition-colors"
+                  aria-label="Call Pure Touch Cleaning at +1 (270) 801-5639"
                 >
                   +1 (270) 801-5639
                 </a>
@@ -102,6 +103,7 @@ const Footer = () => {
                 <a
                   href="mailto:info@puretouchus.com"
                   className="text-primary-foreground/70 hover:text-accent transition-colors"
+                  aria-label="Email Pure Touch Cleaning at info@puretouchus.com"
                 >
                  info@puretouchus.com
                 </a>

@@ -1,16 +1,16 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { ArrowLeftRight, Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
-import livingRoomBefore from "@/assets/living-room-before.png";
-import livingRoomAfter from "@/assets/living-room-after.png";
-import kitchenBefore from "@/assets/kitchen-before.png";
-import kitchenAfter from "@/assets/kitchen-after.png";
-import bathroomBefore from "@/assets/bathroom-before.png";
-import bathroomAfter from "@/assets/bathroom-after.png";
-import officeBefore from "@/assets/office-before.png";
-import officeAfter from "@/assets/office-after.png";
-import ManagerOfficeAfter from "@/assets/manager-office-after.jpg";
-import ManagerOfficeBefore from "@/assets/manager-office-before.jpg";
+import livingRoomBefore from "@/assets/living-room-before.webp";
+import livingRoomAfter from "@/assets/living-room-after.webp";
+import kitchenBefore from "@/assets/kitchen-before.webp";
+import kitchenAfter from "@/assets/kitchen-after.webp";
+import bathroomBefore from "@/assets/bathroom-before.webp";
+import bathroomAfter from "@/assets/bathroom-after.webp";
+import officeBefore from "@/assets/office-before.webp";
+import officeAfter from "@/assets/office-after.webp";
+import ManagerOfficeAfter from "@/assets/manager-office-after.webp";
+import ManagerOfficeBefore from "@/assets/manager-office-before.webp";
 
 interface BeforeAfterItem {
   id: number;

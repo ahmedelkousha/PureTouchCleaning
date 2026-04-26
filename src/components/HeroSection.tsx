@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { MapPin, Phone, Sparkles, ArrowDown, Shield, Clock, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/hero-cleaning.jpg";
-import heroMobileImage from "@/assets/hero-mobile.png";
+import heroImage from "@/assets/hero-cleaning.webp";
+import heroMobileImage from "@/assets/hero-mobile.webp";
 
 const HeroSection = () => {
   const scrollToBooking = () => {
@@ -83,9 +83,9 @@ const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="font-display text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 leading-[1.1]"
           >
-            Professional Cleaning,{" "}
+            Professional Cleaning Services in{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-400">
-              Your Peace of Mind
+              Chicago & Suburbs
             </span>
           </motion.h1>
 
@@ -146,6 +146,7 @@ const HeroSection = () => {
               size="lg"
               onClick={scrollToBooking}
               className="bg-primary hover:bg-primary/90 text-white font-semibold text-lg px-8 py-6 rounded-full shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transition-all duration-300 hover:scale-105"
+              aria-label="Get a free cleaning quote"
             >
               Get Your Free Quote
             </Button>
@@ -154,6 +155,7 @@ const HeroSection = () => {
               variant="outline"
               onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
               className="bg-white/10 border-white/30 text-white hover:bg-white/20 hover:text-white font-medium text-lg px-8 py-6 rounded-full backdrop-blur-sm transition-all duration-300"
+              aria-label="View our cleaning services"
             >
               Our Services
             </Button>

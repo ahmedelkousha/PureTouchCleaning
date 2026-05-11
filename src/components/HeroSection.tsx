@@ -19,18 +19,18 @@ const HeroSection = () => {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Professional Overlay */}
       <div className="absolute inset-0">
-        {/* Desktop background */}
-        <img
-          src={heroImage}
-          alt="Clean modern home"
-          className="hidden md:block w-full h-full object-cover"
-        />
-        {/* Mobile background */}
-        <img
-          src={heroMobileImage}
-          alt="Professional cleaning team"
-          className="md:hidden w-full h-full object-cover"
-        />
+        <picture>
+          {/* Load desktop image for screens 768px and wider */}
+          <source media="(min-width: 768px)" srcSet={heroImage} />
+          {/* Fallback to mobile image for smaller screens */}
+          <img
+            src={heroMobileImage}
+            alt="Professional cleaning team"
+            className="w-full h-full object-cover"
+            fetchPriority="high"
+            loading="eager"
+          />
+        </picture>
         <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/75 to-slate-900/50" />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-slate-900/30" />
       </div>

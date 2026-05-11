@@ -35,32 +35,6 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-slate-900/30" />
       </div>
 
-      {/* Subtle Floating Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(4)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute"
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{
-              opacity: [0, 0.4, 0],
-              scale: [0, 1, 0],
-            }}
-            transition={{
-              duration: 4,
-              delay: i * 1.2,
-              repeat: Infinity,
-              repeatDelay: 3,
-            }}
-            style={{
-              left: `${20 + i * 20}%`,
-              top: `${50 + Math.random() * 30}%`,
-            }}
-          >
-            <Sparkles size={20} className="text-primary/60" />
-          </motion.div>
-        ))}
-      </div>
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 py-20">
